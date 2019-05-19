@@ -24,7 +24,9 @@ FUNCTION FIND(Name : STRING, C: CHAR) RETURNS INTEGER
 	ENDIF
     RETURN -1
 ENDFUNCTION 
+~~~~
 
+~~~~
 n_students = int(input("How many students are there in the class? "))
 
 student_data = []
@@ -41,7 +43,6 @@ print("\n{0:^12}{1:^12}".format("Name", "Email"))
 for j in range(n_students):
     name, email = student_data[j].split("#")
     print("{0:^12}{1:^12}".format(name, email))
-
 ~~~~
 
 # Task 1.2
@@ -89,8 +90,9 @@ FOR n <- 1 TO number_of_students
     outputString <- LEFT(element, hashIndex - 1) & " " & RIGHT(hashIndex, LENGTH(element))
     OUTPUT outputString
 ENDFOR
+~~~~
 
-
+~~~~
 n_students = int(input("How many students are there in the class? "))
 
 student_data = []
@@ -118,12 +120,9 @@ print("\n{0:^12}{1:^12}".format("Name", "Email"))
 for j in range(n_students):
     name, email = student_data[j].split("#")
     print("{0:^12}{1:^12}".format(name, email))
-
-
 ~~~~
 
 # Task 1.3
-
 ~~~~
 INPUT number_of_students
 DECLARE students: ARRAY[1: number_of_students] OF STRING
@@ -155,8 +154,9 @@ FOR n <- 1 TO number_of_students
       OUTPUT email
     ENDIF
 ENDFOR
+~~~~
 
-
+~~~~
 n_students = int(input("How many students are there in the class? "))
 
 student_data = []
@@ -173,11 +173,9 @@ for i in range(n_students):
     name, email = student_data[i].split("#")
     if lookup_name == name:
         print(email)
-
 ~~~~
 
 # Task 1.4
-
 ~~~~
 INPUT number_of_students
 DECLARE students: ARRAY[1: number_of_students] OF STRING
@@ -219,7 +217,9 @@ FOR n <- 1 TO number_of_students
       OUTPUT email
     ENDIF
 ENDFOR
+~~~~
 
+~~~~
 n_students = int(input("How many students are there in the class? "))
 
 student_data = []
@@ -239,8 +239,6 @@ for i in range(n_students):
     name, email = student_data[i].split("#")
     if lookup_name in name:
         print("{0:^12}{1:^12}".format(name, email))
-
-
 ~~~~
 
 # Task 2.1
@@ -257,7 +255,9 @@ FOR n <- 1 TO number_of_students
 ENDFOR
 
 CLOSEFILE 
+~~~~
 
+~~~~
 n_students = int(input("How many students are there in the class? "))
 
 student_data = []
@@ -272,11 +272,9 @@ for i in range(n_students):
 with open("studentData.txt", "a") as f:
     for data in student_data:
         f.write(data)
-
 ~~~~
 
 # Task 2.2
-
 ~~~~
 INPUT studentID
 DECLARE data : STRING
@@ -300,7 +298,9 @@ WHILE NOT EOF("studentData.txt")
     OUTPUT email
   ENDIF
 ENDFOR
+~~~~
 
+~~~~
 studentID = input("Please enter the student id you want to look for")
 found = False
 
@@ -313,11 +313,9 @@ with open("studentData.txt", "r") as f:
             break
     if not found:
         print("Sorry. The ID was not found")
-
 ~~~~
 
 # Task 2.3
-
 ~~~~
 INPUT studentIDSubstring
 DECLARE data : STRING
@@ -353,7 +351,9 @@ WHILE NOT EOF("studentData.txt")
 ENDFOR
 
 CLOSEFILE
+~~~~
 
+~~~~
 studentID = input("Please enter the student id you want to look for")
 found = False
 
@@ -380,17 +380,13 @@ FOR n <- 1 TO number_of_students
 ENDFOR
 
 CLOSEFILE 
+~~~~
 
+~~~~
 n_students = int(input("How many students do you want to add to the file? "))
 with open("studentData.txt", "a") as f:
     for i in range(n_students):
         name = input("Student name: ")
         email = input("Student email: ")
-        f.write(name + "#" + email)
-     
+        f.write(name + "#" + email)    
 ~~~~
-
-
-
-
-

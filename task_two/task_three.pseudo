@@ -1,0 +1,34 @@
+INPUT studentIDSubstring
+DECLARE data : STRING
+
+FUNCTION FIND(Name : STRING, C: CHAR) RETURNS INTEGER
+    FOR n <- 1 TO LENGTH(Name)
+        IF Name[n] = C
+            RETURN n
+    RETURN -1
+ENDFUNCTION
+ 
+FUNCTION IS_IN(s1 : STRING, s2 : STRING) RETURNS BOOL
+    FOR n <- 1 TO LENGTH(s1)
+      IF MID(s1, n, LENGTH(s2)) = s2 THEN
+        RETURN TRUE
+      ENDIF
+    ENDFOR
+    RETURN FALSE
+ENDFUNCTION
+
+OPENFILE "studentData.txt" FOR READ
+
+WHILE NOT EOF("studentData.txt")
+  READFILE "studentData.txt", data
+  hashIndex <- FIND(data, "#")
+  name <- LEFT(data, hashIndex - 1) 
+  email <- RIGHT(hashIndex, LENGTH(element))
+
+  IF IS_IN(name, studentIDSubstring) THEN
+    OUTPUT name
+    OUTPUT email
+  ENDIF
+ENDFOR
+
+CLOSEFILE

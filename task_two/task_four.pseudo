@@ -1,0 +1,10 @@
+INPUT number_of_students
+OPENFILE "studentData.txt" FOR APPEND
+
+FOR n <- 1 TO number_of_students
+    INPUT id
+    INPUT email
+    WRITEFILE "studentData.txt", id & '#' & email	
+ENDFOR
+
+CLOSEFILE 

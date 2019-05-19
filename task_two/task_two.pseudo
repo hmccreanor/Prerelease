@@ -1,0 +1,22 @@
+INPUT studentID
+DECLARE data : STRING
+
+OPENFILE "studentData.txt" FOR READ
+
+FUNCTION FIND(s1 : STRING, s2 : STRING)
+  FOR n <- 1 TO LEN(s1) 
+    IF s1[n] = s2 THEN
+      RETURN n
+    ENDIF 
+  ENDFOR 
+  RETURN -1
+ENDFUNCTION
+
+WHILE NOT EOF("studentData.txt")
+  READFILE "studentData.txt" data
+  hashIndex <- FIND(data, '#')
+  IF hashIndex <> -1 THEN
+    email <- RIGHT(hashIndex, LENGTH(data))
+    OUTPUT email
+  ENDIF
+ENDFOR

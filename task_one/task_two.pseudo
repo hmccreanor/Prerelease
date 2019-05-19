@@ -1,0 +1,44 @@
+INPUT number_of_students
+DECLARE students: ARRAY[1: number_of_students] OF STRING
+CONSTANT headers = "Student Name/Email Address"
+
+FOR n <- 1 TO number_of_students
+    INPUT id
+    INPUT email
+    students[n] <- id & '#' & email
+ENDFOR
+
+FUNCTION FIND(Name : STRING, C: CHAR) RETURNS INTEGER
+    FOR n <- 1 TO LENGTH(Name)
+        IF Name[n] = C
+            RETURN n
+    RETURN -1
+ENDFUNCTION
+        
+INPUT number_of_students_to_delete
+
+FOR n <- 1 TO number_of_students_to_delete
+    INPUT id
+    INPUT email
+    formattedEntry <- id & '#' & email
+    FOR j <- 1 TO number_of_students
+        IF students[j] = formattedEntry THEN
+            students[j] <- ""
+        ENDIF
+    ENDFOR 
+ENDFOR
+    	
+FOR n <- 1 TO number_of_students
+    IF students[n] <> "" THEN
+        OUTPUT students[n]
+    ENDIF
+ENDFOR
+
+
+FOR n <- 1 TO number_of_students
+    element <- students[n]
+    hashIndex <- FIND(element, '#')
+    outputString <- LEFT(element, hashIndex - 1) & " " & RIGHT(hashIndex, LENGTH(element))
+    OUTPUT outputString
+ENDFOR
+

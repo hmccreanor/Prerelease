@@ -1,0 +1,40 @@
+INPUT number_of_students
+DECLARE students: ARRAY[1: number_of_students] OF STRING
+CONSTANT headers = "Student Name/Email Address"
+
+FOR n <- 1 TO number_of_students
+    INPUT id
+    INPUT email
+    students[n] <- id & '#' & email
+ENDFOR 
+
+FUNCTION FIND(Name : STRING, C: CHAR) RETURNS INTEGER
+    FOR n <- 1 TO LENGTH(Name)
+        IF Name[n] = C
+            RETURN n
+    RETURN -1
+ENDFUNCTION
+ 
+FUNCTION IS_IN(s1 : STRING, s2 : STRING) RETURNS BOOL
+    FOR n <- 1 TO LENGTH(s1)
+      IF MID(s1, n, LENGTH(s2)) = s2 THEN
+        RETURN TRUE
+      ENDIF
+    ENDFOR
+    RETURN FALSE
+ENDFUNCTION
+
+INPUT lookUpName
+
+FOR n <- 1 TO number_of_students
+    element <- students[n]
+
+    hashIndex <- FIND(element, '#')
+    name <- LEFT(element, hashIndex - 1)
+    email <- RIGHT(hashIndex, LENGTH(element))
+
+    IF IS_IN(name, lookUpName) THEN
+      OUTPUT name	
+      OUTPUT email
+    ENDIF
+ENDFOR
